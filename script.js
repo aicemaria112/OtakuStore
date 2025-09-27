@@ -107,19 +107,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const body = document.body;
 
     // Toggle del menú hamburguesa
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Prevenir scroll del body cuando el menú está abierto
+            if (navMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        });
+    }
 
     // Cerrar menú al hacer click en un enlace
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
+            if (hamburger && navMenu) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+    });
+
+    // Cerrar menú al hacer click fuera de él
+    document.addEventListener('click', function(e) {
+        if (hamburger && navMenu && 
+            !hamburger.contains(e.target) && 
+            !navMenu.contains(e.target) && 
+            navMenu.classList.contains('active')) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
-        });
+            body.style.overflow = '';
+        }
     });
 
     // Scroll suave para los enlaces de navegación
@@ -138,6 +163,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Asegurar que el título sea visible en móviles
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle && window.innerWidth <= 480) {
+        // Forzar visibilidad del título en móviles
+        heroTitle.style.display = 'block';
+        heroTitle.style.visibility = 'visible';
+        heroTitle.style.opacity = '1';
+        
+        // Simplificar efectos de glitch en móviles
+        const glitchElement = heroTitle.querySelector('.glitch');
+        if (glitchElement) {
+            glitchElement.style.animation = 'none';
+        }
+    }
 });
 
 // Efectos de scroll

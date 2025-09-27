@@ -162,6 +162,10 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    /* Fallback para móviles si el gradiente no funciona */
+    color: var(--primary-color);
+    position: relative;
+    z-index: 1;
 }
 
 .glitch {
@@ -273,44 +277,355 @@ body {
 
 .floating-elements {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
+    perspective: 1000px;
 }
 
-.floating-icon {
+/* Elementos flotantes principales */
+.floating-element {
     position: absolute;
-    font-size: 3rem;
-    animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    width: 80px;
+    height: 80px;
+    animation: floatAdvanced 6s ease-in-out infinite;
+    transform-style: preserve-3d;
 }
 
-.floating-icon:nth-child(1) {
-    top: 20%;
-    left: 20%;
+.floating-element.element-1 {
+    top: 15%;
+    left: 15%;
     animation-delay: 0s;
 }
 
-.floating-icon:nth-child(2) {
-    top: 30%;
-    right: 20%;
-    animation-delay: 0.5s;
-}
-
-.floating-icon:nth-child(3) {
-    bottom: 30%;
-    left: 30%;
-    animation-delay: 1s;
-}
-
-.floating-icon:nth-child(4) {
-    bottom: 20%;
-    right: 30%;
+.floating-element.element-2 {
+    top: 20%;
+    right: 15%;
     animation-delay: 1.5s;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+.floating-element.element-3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 3s;
+}
+
+.floating-element.element-4 {
+    bottom: 15%;
+    right: 20%;
+    animation-delay: 4.5s;
+}
+
+/* Formas geométricas */
+.geometric-shape {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 
+        0 0 30px rgba(255, 0, 128, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: pulse 3s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.geometric-shape.hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: linear-gradient(135deg, #ff0080, #7928ca);
+    box-shadow: 0 0 40px rgba(255, 0, 128, 0.8);
+}
+
+.geometric-shape.triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background: linear-gradient(135deg, #00ffff, #45b7d1);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+}
+
+.geometric-shape.diamond {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background: linear-gradient(135deg, #ffff00, #ff6b6b);
+    box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
+}
+
+.geometric-shape.circle {
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    box-shadow: 0 0 40px rgba(255, 107, 107, 0.8);
+}
+
+/* Brillo interno */
+.inner-glow {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: inherit;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Iconos dentro de las formas */
+.geometric-shape i {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    animation: iconSpin 4s linear infinite;
+}
+
+/* Partículas de fondo */
+.background-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: particleFloat 8s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.particle-1 {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    color: #ff69b4;
+}
+
+.particle-2 {
+    top: 20%;
+    right: 15%;
+    animation-delay: 1s;
+    color: #ff4444;
+}
+
+.particle-3 {
+    bottom: 30%;
+    left: 25%;
+    animation-delay: 2s;
+    color: #ff0080;
+}
+
+.particle-4 {
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 3s;
+    color: #00ffff;
+}
+
+.particle-5 {
+    top: 50%;
+    left: 5%;
+    animation-delay: 4s;
+    color: #ff6600;
+}
+
+.particle-6 {
+    top: 60%;
+    right: 5%;
+    animation-delay: 5s;
+    color: #ffff00;
+}
+
+/* Símbolos flotantes temáticos */
+.floating-symbols {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.symbol {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: symbolFloat 10s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+    opacity: 0.7;
+}
+
+.symbol-1 {
+    top: 5%;
+    left: 50%;
+    animation-delay: 0s;
+    color: #ffd700;
+}
+
+.symbol-2 {
+    top: 80%;
+    left: 10%;
+    animation-delay: 2s;
+    color: #4169e1;
+}
+
+.symbol-3 {
+    top: 70%;
+    right: 5%;
+    animation-delay: 4s;
+    color: #c0c0c0;
+}
+
+.symbol-4 {
+    top: 30%;
+    left: 80%;
+    animation-delay: 6s;
+    color: #ff4500;
+}
+
+.symbol-5 {
+    bottom: 5%;
+    left: 60%;
+    animation-delay: 8s;
+    color: #ff69b4;
+}
+
+/* Anillos de energía */
+.energy-rings {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.energy-ring {
+    position: absolute;
+    border: 2px solid;
+    border-radius: 50%;
+    animation: energyPulse 4s ease-in-out infinite;
+}
+
+.energy-ring.ring-1 {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: rgba(255, 0, 128, 0.3);
+    animation-delay: 0s;
+}
+
+.energy-ring.ring-2 {
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: rgba(0, 255, 255, 0.2);
+    animation-delay: 1.5s;
+}
+
+.energy-ring.ring-3 {
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: rgba(255, 255, 0, 0.1);
+    animation-delay: 3s;
+}
+
+/* Animaciones avanzadas */
+@keyframes floatAdvanced {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotateY(0deg) rotateZ(0deg);
+    }
+    25% { 
+        transform: translateY(-15px) translateX(10px) rotateY(90deg) rotateZ(90deg);
+    }
+    50% { 
+        transform: translateY(-30px) translateX(0px) rotateY(180deg) rotateZ(180deg);
+    }
+    75% { 
+        transform: translateY(-15px) translateX(-10px) rotateY(270deg) rotateZ(270deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(255, 0, 128, 0.6);
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 0 0 50px rgba(255, 0, 128, 1);
+    }
+}
+
+@keyframes glow {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes iconSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes particleFloat {
+    0%, 100% { 
+        transform: translateY(0px) scale(1);
+        opacity: 0.3;
+    }
+    25% { 
+        transform: translateY(-20px) scale(1.2);
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateY(-40px) scale(0.8);
+        opacity: 1;
+    }
+    75% { 
+        transform: translateY(-20px) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes energyPulse {
+    0% { 
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes symbolFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    25% { 
+        transform: translateY(-25px) rotate(90deg) scale(1.1);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-50px) rotate(180deg) scale(0.9);
+        opacity: 0.8;
+    }
+    75% { 
+        transform: translateY(-25px) rotate(270deg) scale(1.1);
+        opacity: 1;
+    }
 }
 
 @keyframes fadeInUp {
@@ -479,6 +794,7 @@ body {
     font-weight: 700;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2; /* Estándar para compatibilidad */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -489,6 +805,7 @@ body {
     font-size: 0.85rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2; /* Estándar para compatibilidad */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -826,6 +1143,21 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 8rem 2rem 3rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -842,38 +1174,116 @@ body {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+        z-index: 999;
     }
     
     .nav-menu.active {
         left: 0;
     }
     
+    /* Mejoras para el hero en tablets */
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 6rem 1rem 2rem;
+        padding: 7rem 1.5rem 3rem;
+        min-height: 90vh;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 2rem;
     }
     
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
-    }
-    .hero-image { margin-top: 1rem; }
-    .floating-elements { width: 220px; height: 220px; }
-    .floating-icon { font-size: 2.2rem; }
-    
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
-    .product-image { height: 200px; }
-    .product-info h3 { font-size: 1rem; }
-    .product-description { font-size: 0.85rem; }
-    .btn-whatsapp { padding: 0.7rem 0.8rem; }
+    
+    .hero-image { 
+        margin-top: 1rem;
+        flex: none;
+    }
+    
+    .floating-elements { 
+        width: 300px; 
+        height: 300px; 
+    }
+    
+    .floating-element {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .geometric-shape i {
+        font-size: 1.5rem;
+    }
+    
+    .energy-ring.ring-1 {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .energy-ring.ring-2 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .energy-ring.ring-3 {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* Optimización de tarjetas para tablets */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        padding: 0 1rem;
+    }
+    
+    .product-card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    .product-image { 
+        height: 220px; 
+    }
+    
+    .product-info {
+        padding: 1.2rem;
+    }
+    
+    .product-info h3 { 
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .product-description { 
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .btn-whatsapp { 
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
     
     .footer-content {
         grid-template-columns: 1fr;
@@ -882,6 +1292,7 @@ body {
     
     .newsletter {
         flex-direction: column;
+        gap: 1rem;
     }
     
     .contact-content {
@@ -896,27 +1307,223 @@ body {
     .whatsapp-number span {
         font-size: 1.2rem;
     }
-    .footer .contact-content { max-width: 480px; }
+    
+    .footer .contact-content { 
+        max-width: 480px; 
+    }
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 1.8rem;
+    /* Mejoras específicas para móviles */
+    .nav-container {
+        padding: 0 1rem;
     }
     
-    .section-title { font-size: 1.6rem; }
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .logo i {
+        font-size: 1.5rem;
+    }
+    
+    /* Hero optimizado para móviles */
+    .hero {
+        padding: 6rem 1rem 2rem;
+        min-height: 85vh;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        /* Asegurar que el título sea visible */
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .glitch {
+        /* Simplificar efectos en móviles para mejor rendimiento */
+        animation: none;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+        display: none;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+    
+    .floating-elements { 
+        width: 250px; 
+        height: 250px; 
+    }
+    
+    .floating-element {
+        width: 50px;
+        height: 50px;
+        animation-duration: 8s; /* Animación más lenta para mejor rendimiento */
+    }
+    
+    .geometric-shape i {
+        font-size: 1.2rem;
+    }
+    
+    .particle {
+        width: 15px;
+        height: 15px;
+        font-size: 0.8rem;
+    }
+    
+    .symbol {
+        font-size: 1rem;
+        opacity: 0.6;
+    }
+    
+    .energy-ring.ring-1 {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .energy-ring.ring-2 {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .energy-ring.ring-3 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    /* Simplificar animaciones en móviles */
+    @keyframes floatAdvanced {
+        0%, 100% { 
+            transform: translateY(0px) rotateZ(0deg);
+        }
+        50% { 
+            transform: translateY(-20px) rotateZ(180deg);
+        }
+    }
+    
+    /* Tarjetas optimizadas para modo portrait */
+    .products-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .product-card {
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(255, 0, 128, 0.15);
+        transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(255, 0, 128, 0.25);
+    }
+    
+    .product-image { 
+        height: 200px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .product-info {
+        padding: 1rem;
+    }
+    
+    .product-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+    
+    .product-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+    }
+    
+    .product-price {
+        margin-bottom: 0.5rem;
+    }
+    
+    .price-current {
+        font-size: 1.1rem;
+    }
+    
+    .btn-whatsapp {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    .btn-whatsapp.icon-only {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .btn-whatsapp.icon-only i {
+        font-size: 1rem;
+    }
+    
+    /* Secciones */
+    .section-title { 
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
     
     .container {
         padding: 0 1rem;
     }
-    .products-grid { grid-template-columns: 1fr; gap: 0.9rem; }
-    .product-image { height: 180px; }
-    .btn { width: 100%; }
-    .footer { padding: 1.5rem 0 0.8rem; }
-    .footer .section-title { font-size: 1.5rem; margin-bottom: 0.8rem; }
-    .footer .contact-info p { font-size: 0.9rem; }
-    .footer .whatsapp-number i { font-size: 1.3rem; }
-    .footer .whatsapp-number span { font-size: 1.1rem; }
+    
+    .products-section {
+        padding: 3rem 0;
+    }
+    
+    /* Footer optimizado */
+    .footer { 
+        padding: 2rem 0 1rem; 
+    }
+    
+    .footer .section-title { 
+        font-size: 1.6rem; 
+        margin-bottom: 1rem; 
+    }
+    
+    .footer .contact-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .footer .contact-info p { 
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .footer .whatsapp-number i { 
+        font-size: 1.4rem; 
+    }
+    
+    .footer .whatsapp-number span { 
+        font-size: 1.2rem; 
+    }
+    
+    .footer .contact-content {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .btn-whatsapp-main {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* Animaciones adicionales */
@@ -951,7 +1558,7 @@ html {
 .section-filter {
     display: flex;
     justify-content: center;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.5rem 0;
 }
 .section-filter input[type="text"] {
     width: min(520px, 100%);
@@ -961,11 +1568,135 @@ html {
     background: rgba(26,26,46,0.6);
     color: var(--text-light);
     outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+.section-filter input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
+    background: rgba(26,26,46,0.8);
 }
 .section-filter input[type="text"]::placeholder {
     color: var(--text-gray);
 }
+
+/* Mejoras adicionales para móviles */
+@media (max-width: 768px) {
+    .section-filter {
+        margin: 0 1rem 1.5rem 1rem;
+    }
+    .section-filter input[type="text"] {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 480px) {
-  .section-filter { margin-bottom: 0.6rem; }
-  .section-filter input[type="text"] { padding: 0.6rem 0.8rem; border-radius: 10px; }
+    .section-filter { 
+        margin: 0 0.5rem 1rem 0.5rem;
+    }
+    .section-filter input[type="text"] { 
+        padding: 0.7rem 0.9rem; 
+        border-radius: 10px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Mejoras adicionales para tarjetas en portrait */
+@media (max-width: 480px) and (orientation: portrait) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 0 0.8rem;
+    }
+    
+    .product-card {
+        border-radius: 15px;
+        overflow: hidden;
+        background: var(--bg-card);
+        border: 1px solid rgba(255, 0, 128, 0.1);
+        transition: all 0.4s ease;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(255, 0, 128, 0.2);
+        border-color: var(--primary-color);
+    }
+    
+    .product-image {
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+    
+    .product-info {
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 140px;
+    }
+    
+    .product-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+        font-weight: 600;
+    }
+    
+    .product-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+    }
+    
+    .product-price {
+        margin-top: auto;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .price-current {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+    
+    .btn-whatsapp.icon-only {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-whatsapp.icon-only:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    }
+    
+    .btn-whatsapp.icon-only i {
+        font-size: 1.1rem;
+        color: white;
+    }
 }
