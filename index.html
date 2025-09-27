@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OtakuStore - Tu Tienda Anime Favorita</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Partículas de fondo -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-torii-gate"></i>
+                    <span>OtakuStore</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Inicio</a></li>
+                    <li><a href="#series" class="nav-link">Series</a></li>
+                    <li><a href="#peliculas" class="nav-link">Películas</a></li>
+                    <li><a href="#mangas" class="nav-link">Mangas</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="glitch" data-text="OTAKU STORE">OTAKU STORE</span>
+            </h1>
+            <p class="hero-subtitle">Tu destino definitivo para anime, manga y más</p>
+            <!-- <div class="hero-buttons">
+                <button class="btn btn-primary">Explorar Catálogo</button>
+                <button class="btn btn-secondary">Ver Ofertas</button>
+            </div> -->
+        </div>
+        <div class="hero-image">
+            <div class="floating-elements">
+                <div class="floating-icon">🎌</div>
+                <div class="floating-icon">⚡</div>
+                <div class="floating-icon">🌸</div>
+                <div class="floating-icon">🗾</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Series Section -->
+    <section id="series" class="products-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-tv"></i>
+                Series Anime
+            </h2>
+            <div class="section-filter">
+                <input id="series-filter" type="text" placeholder="Filtrar por nombre..." aria-label="Filtrar series">
+            </div>
+            <div class="products-grid">
+                <!-- Render dinámico desde script.js (Series) -->
+               
+                <!-- Fin render dinámico Series -->
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Películas Section -->
+    <section id="peliculas" class="products-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-film"></i>
+                Películas Anime
+            </h2>
+            <div class="section-filter">
+                <input id="movies-filter" type="text" placeholder="Filtrar por nombre..." aria-label="Filtrar películas">
+            </div>
+            <div class="products-grid">
+                <!-- Render dinámico desde script.js (Películas) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mangas Section -->
+  <section id="mangas" class="products-section">
+      <div class="container">
+          <h2 class="section-title">
+              <i class="fas fa-book"></i>
+              Mangas
+          </h2>
+          <div class="section-filter">
+              <input id="mangas-filter" type="text" placeholder="Filtrar por nombre..." aria-label="Filtrar mangas">
+          </div>
+          <div class="products-grid">
+              <!-- Render dinámico desde script.js (Mangas) -->
+          </div>
+      </div>
+  </section>
+    
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fab fa-whatsapp"></i>
+                Contacto
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>¡Hablemos por WhatsApp!</h3>
+                    <p>¿Tienes alguna pregunta sobre nuestros productos? ¿Quieres hacer un pedido personalizado? ¡Contáctame directamente por WhatsApp!</p>
+                    <div class="whatsapp-info">
+                        <div class="whatsapp-number">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+53 58906498</span>
+                        </div>
+                        <p class="whatsapp-note">Disponible de Lunes a Viernes, 9:00 AM - 8:00 PM</p>
+                    </div>
+                    <a href="https://wa.me/5358906498?text=%C2%A1Hola!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20productos%20de%20OtakuStore" 
+                       class="btn btn-whatsapp-main" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Chatear por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
